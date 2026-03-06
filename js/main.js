@@ -516,6 +516,58 @@ $(document).ready(function () {
                     "btnText": "Explore Bundle",
                     "featuresHTML": "<div class=\"d-flex gap-3 flex-wrap mb-4\"><div class=\"d-flex align-items-center gap-2\" style=\"color: var(--secondary-light)\"><i class=\"bi bi-check-circle-fill\"></i><span>Phone Cases</span></div><div class=\"d-flex align-items-center gap-2\" style=\"color: var(--secondary-light)\"><i class=\"bi bi-check-circle-fill\"></i><span>Chargers</span></div><div class=\"d-flex align-items-center gap-2\" style=\"color: var(--secondary-light)\"><i class=\"bi bi-check-circle-fill\"></i><span>Earbuds</span></div><div class=\"d-flex align-items-center gap-2\" style=\"color: var(--secondary-light)\"><i class=\"bi bi-check-circle-fill\"></i><span>Screen Guards</span></div></div>"
                 }
+            ],
+            "testimonials": [
+                {
+                    "delayClass": "reveal-delay-1",
+                    "starsHTML": "<i class=\"bi bi-star-fill\"></i><i class=\"bi bi-star-fill\"></i><i class=\"bi bi-star-fill\"></i><i class=\"bi bi-star-fill\"></i><i class=\"bi bi-star-fill\"></i>",
+                    "quote": "\"Bought a pre-owned iPhone 14 Pro and it looks absolutely brand new! The 50-point inspection they do is legit. Best mobile shop experience I've ever had.\"",
+                    "avatar": "AK",
+                    "name": "Ahmed Khan",
+                    "role": "Verified Buyer"
+                },
+                {
+                    "delayClass": "reveal-delay-2",
+                    "starsHTML": "<i class=\"bi bi-star-fill\"></i><i class=\"bi bi-star-fill\"></i><i class=\"bi bi-star-fill\"></i><i class=\"bi bi-star-fill\"></i><i class=\"bi bi-star-fill\"></i>",
+                    "quote": "\"Amazing prices on accessories! Got earbuds and a fast charger for half the price I'd pay elsewhere. Plus the delivery was super quick. Highly recommend!\"",
+                    "avatar": "SF",
+                    "name": "Sara Fatima",
+                    "role": "Verified Buyer"
+                },
+                {
+                    "delayClass": "reveal-delay-3",
+                    "starsHTML": "<i class=\"bi bi-star-fill\"></i><i class=\"bi bi-star-fill\"></i><i class=\"bi bi-star-fill\"></i><i class=\"bi bi-star-fill\"></i><i class=\"bi bi-star-half\"></i>",
+                    "quote": "\"I traded in my old Samsung and got great credit towards the new Galaxy S25 Ultra. Hassle-free process and brilliant customer service. Will definitely come back!\"",
+                    "avatar": "UR",
+                    "name": "Usman Raza",
+                    "role": "Verified Buyer"
+                }
+            ],
+            "storeInfo": [
+                {
+                    "iconClass": "bi-geo-alt-fill",
+                    "bgStyle": "background: rgba(108, 92, 231, 0.15); color: var(--primary-light);",
+                    "title": "Address",
+                    "descHTML": "Shop #12, Mobile Market, Main Blvd<br />Lahore, Pakistan"
+                },
+                {
+                    "iconClass": "bi-telephone-fill",
+                    "bgStyle": "background: rgba(0, 206, 201, 0.15); color: var(--secondary);",
+                    "title": "Phone",
+                    "descHTML": "+92 300 6635231"
+                },
+                {
+                    "iconClass": "bi-envelope-fill",
+                    "bgStyle": "background: rgba(253, 121, 168, 0.15); color: var(--accent);",
+                    "title": "Email",
+                    "descHTML": "info@mobimart.pk"
+                },
+                {
+                    "iconClass": "bi-clock-fill",
+                    "bgStyle": "background: rgba(253, 203, 110, 0.15); color: var(--accent-light);",
+                    "title": "Working Hours",
+                    "descHTML": "Mon &ndash; Sat: 10:00 AM &ndash; 9:00 PM<br />Sunday: 12:00 PM &ndash; 6:00 PM"
+                }
             ]
         };
 
@@ -582,6 +634,48 @@ $(document).ready(function () {
             `;
         });
         $("#deals-container").html(dealsHtml);
+
+        // Render Testimonials
+        var testimonialsHtml = "";
+        $.each(data.testimonials, function(i, t) {
+            testimonialsHtml += `
+                <div class="col-lg-4 col-md-6 reveal ${t.delayClass}">
+                    <div class="testimonial-card">
+                        <div class="stars">
+                            ${t.starsHTML}
+                        </div>
+                        <p class="quote">
+                            ${t.quote}
+                        </p>
+                        <div class="client-info">
+                            <div class="avatar">${t.avatar}</div>
+                            <div>
+                                <h6>${t.name}</h6>
+                                <span>${t.role}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+        $("#testimonials-container").html(testimonialsHtml);
+
+        // Render Store Info
+        var storeInfoHtml = "";
+        $.each(data.storeInfo, function(i, s) {
+            storeInfoHtml += `
+                <div class="contact-info-item">
+                    <div class="info-icon" style="${s.bgStyle}">
+                        <i class="bi ${s.iconClass}"></i>
+                    </div>
+                    <div>
+                        <h6>${s.title}</h6>
+                        <p>${s.descHTML}</p>
+                    </div>
+                </div>
+            `;
+        });
+        $("#store-info-container").html(storeInfoHtml);
 
         // Re-bind setup
         setupWhatsAppLinks();
