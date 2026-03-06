@@ -548,7 +548,7 @@ $(document).ready(function () {
                     "iconClass": "bi-geo-alt-fill",
                     "bgStyle": "background: rgba(108, 92, 231, 0.15); color: var(--primary-light);",
                     "title": "Address",
-                    "descHTML": "Shop #12, Mobile Market, Main Blvd<br />Lahore, Pakistan"
+                    "descHTML": "Shop Right 4, HBL Basement, Rafiq Centre, Katchery Bazar, Faisalabad."
                 },
                 {
                     "iconClass": "bi-telephone-fill",
@@ -560,13 +560,13 @@ $(document).ready(function () {
                     "iconClass": "bi-envelope-fill",
                     "bgStyle": "background: rgba(253, 121, 168, 0.15); color: var(--accent);",
                     "title": "Email",
-                    "descHTML": "info@mobimart.pk"
+                    "descHTML": "arslanpixelstore@gmail.com"
                 },
                 {
                     "iconClass": "bi-clock-fill",
                     "bgStyle": "background: rgba(253, 203, 110, 0.15); color: var(--accent-light);",
                     "title": "Working Hours",
-                    "descHTML": "Mon &ndash; Sat: 10:00 AM &ndash; 9:00 PM<br />Sunday: 12:00 PM &ndash; 6:00 PM"
+                    "descHTML": "Open all week<br />(Friday closed)"
                 }
             ]
         };
