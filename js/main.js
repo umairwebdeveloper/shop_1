@@ -115,7 +115,7 @@ $(document).ready(function () {
             var name = $(this).find(".product-info h5").text();
             var price = $(this).find(".current-price").text();
             var waUrl =
-                "https://wa.me/923001234567?text=" +
+                "https://wa.me/923006635231?text=" +
                 encodeURIComponent(
                     "Hi! I'm interested in the " + name + " (" + price + ")",
                 );
@@ -216,32 +216,89 @@ $(document).ready(function () {
     revealOnScroll();
 
     // ---- Contact Form ---- //
-    $("#contactForm").on("submit", function (e) {
-        e.preventDefault();
-        var btn = $(this).find('button[type="submit"]');
-        var original = btn.html();
-        btn.html(
-            '<span class="spinner-border spinner-border-sm me-2"></span> Sending...',
-        );
-        btn.prop("disabled", true);
+    // ---- Contact Form (CodeFreeForm Integration) ---- //
+    var form = document.getElementById("codefreeformForm");
+    if (form) {
+        var alertBox = form.querySelector(".form-alert");
+        var submitBtn = form.querySelector('button[type="submit"]');
+        var originalText = submitBtn.innerHTML;
 
-        setTimeout(function () {
-            btn.html('<i class="bi bi-check-circle me-2"></i> Message Sent!');
-            btn.css({
-                background: "var(--secondary)",
-                borderColor: "var(--secondary)",
+        var showAlert = function(msg, type) {
+            type = type || "success";
+            if (!alertBox) return;
+
+            alertBox.style.display = "block";
+            alertBox.textContent = msg;
+            alertBox.style.background =
+                type === "success" ? "rgba(46, 204, 113, 0.15)" : "rgba(231, 76, 60, 0.15)";
+            alertBox.style.color =
+                type === "success" ? "#2ecc71" : "#e74c3c";
+            alertBox.style.border = type === "success" ? "1px solid rgba(46, 204, 113, 0.3)" : "1px solid rgba(231, 76, 60, 0.3)";
+
+            setTimeout(function() {
+                alertBox.style.display = "none";
+            }, 5000);
+        };
+
+        var setLoading = function(loading) {
+            submitBtn.disabled = loading;
+            if(loading) {
+                submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span> Sending...';
+            } else {
+                submitBtn.innerHTML = originalText;
+            }
+        };
+
+        form.addEventListener("submit", async function(e) {
+            e.preventDefault();
+            if (alertBox) alertBox.style.display = "none";
+            setLoading(true);
+
+            var formData = new FormData(form);
+            var jsonObject = {};
+            formData.forEach(function(value, key) {
+                jsonObject[key] = value;
             });
-            showToast(
-                '<i class="bi bi-envelope-check"></i> Message sent successfully!',
-            );
-            $("#contactForm")[0].reset();
-            setTimeout(function () {
-                btn.html(original);
-                btn.css({ background: "", borderColor: "" });
-                btn.prop("disabled", false);
-            }, 2000);
-        }, 1500);
-    });
+            var json = JSON.stringify(jsonObject);
+
+            try {
+                const res = await fetch(form.action, {
+                    method: form.method,
+                    body: json,
+                    headers: {
+                        "Content-Type": "application/json",
+                        Accept: "application/json",
+                    },
+                });
+
+                const data = await res.json().catch(function() { return {}; });
+
+                if (
+                    res.ok &&
+                    (data.success === true ||
+                        data.success === undefined)
+                ) {
+                    showAlert(
+                        data.message || "Message sent successfully!",
+                        "success"
+                    );
+                    if (typeof showToast === 'function') {
+                        showToast('<i class="bi bi-envelope-check"></i> ' + (data.message || "Message sent successfully!"));
+                    }
+                    form.reset();
+                } else {
+                    showAlert(
+                        data.message || "Something went wrong.",
+                        "error"
+                    );
+                }
+            } catch (err) {
+                showAlert("Network error. Try again.", "error");
+            }
+
+            setLoading(false);
+        });
+    }
 
     // ---- Newsletter Form ---- //
     $("#newsletterForm").on("submit", function (e) {
@@ -270,7 +327,7 @@ $(document).ready(function () {
         $("#quickViewModal .qv-price").text(price);
 
         var waUrl =
-            "https://wa.me/923001234567?text=" +
+            "https://wa.me/923006635231?text=" +
             encodeURIComponent(
                 "Hi! I'm interested in the " + name + " (" + price + ")",
             );
@@ -300,6 +357,269 @@ $(document).ready(function () {
             observer.observe(el);
         });
     }
+
+    // ---- Load Dynamic Data ---- //
+    function loadDynamicData() {
+        var data = {
+            "products": [
+                {
+                    "category": "new",
+                    "badge": "New",
+                    "badgeClass": "badge-new",
+                    "image": "images/phone-new-1.png",
+                    "name": "iPhone 16 Pro Max",
+                    "label": "Smartphone",
+                    "ratingHTML": "<i class=\"bi bi-star-fill\"></i><i class=\"bi bi-star-fill\"></i><i class=\"bi bi-star-fill\"></i><i class=\"bi bi-star-fill\"></i><i class=\"bi bi-star-half\"></i>",
+                    "reviews": 128,
+                    "currentPrice": "Rs. 549,999",
+                    "oldPrice": "Rs. 599,999",
+                    "conditionHTML": "",
+                    "delay": "1"
+                },
+                {
+                    "category": "new",
+                    "badge": "New",
+                    "badgeClass": "badge-new",
+                    "image": "images/phone-new-2.png",
+                    "name": "Samsung Galaxy S25 Ultra",
+                    "label": "Smartphone",
+                    "ratingHTML": "<i class=\"bi bi-star-fill\"></i><i class=\"bi bi-star-fill\"></i><i class=\"bi bi-star-fill\"></i><i class=\"bi bi-star-fill\"></i><i class=\"bi bi-star-fill\"></i>",
+                    "reviews": 96,
+                    "currentPrice": "Rs. 479,999",
+                    "oldPrice": "Rs. 529,999",
+                    "conditionHTML": "",
+                    "delay": "2"
+                },
+                {
+                    "category": "new",
+                    "badge": "New",
+                    "badgeClass": "badge-new",
+                    "image": "images/phone-new-3.png",
+                    "name": "Google Pixel 9 Pro",
+                    "label": "Smartphone",
+                    "ratingHTML": "<i class=\"bi bi-star-fill\"></i><i class=\"bi bi-star-fill\"></i><i class=\"bi bi-star-fill\"></i><i class=\"bi bi-star-fill\"></i><i class=\"bi bi-star\"></i>",
+                    "reviews": 72,
+                    "currentPrice": "Rs. 329,999",
+                    "oldPrice": "Rs. 359,999",
+                    "conditionHTML": "",
+                    "delay": "3"
+                },
+                {
+                    "category": "used",
+                    "badge": "Pre-Owned",
+                    "badgeClass": "badge-used",
+                    "image": "images/phone-used-1.png",
+                    "name": "iPhone 14 Pro",
+                    "label": "Pre-Owned",
+                    "ratingHTML": "<i class=\"bi bi-star-fill\"></i><i class=\"bi bi-star-fill\"></i><i class=\"bi bi-star-fill\"></i><i class=\"bi bi-star-fill\"></i><i class=\"bi bi-star\"></i>",
+                    "reviews": 45,
+                    "currentPrice": "Rs. 249,999",
+                    "oldPrice": "Rs. 349,999",
+                    "conditionHTML": "<div class=\"product-condition excellent\"><i class=\"bi bi-patch-check-fill\"></i> Excellent Condition</div>",
+                    "delay": "1"
+                },
+                {
+                    "category": "used",
+                    "badge": "Pre-Owned",
+                    "badgeClass": "badge-used",
+                    "image": "images/phone-used-2.png",
+                    "name": "Samsung Galaxy S23",
+                    "label": "Pre-Owned",
+                    "ratingHTML": "<i class=\"bi bi-star-fill\"></i><i class=\"bi bi-star-fill\"></i><i class=\"bi bi-star-fill\"></i><i class=\"bi bi-star-fill\"></i><i class=\"bi bi-star-half\"></i>",
+                    "reviews": 63,
+                    "currentPrice": "Rs. 159,999",
+                    "oldPrice": "Rs. 229,999",
+                    "conditionHTML": "<div class=\"product-condit   ></i> Excellent Condition</div>",
+                    "delay": "2"
+                },
+                {
+                    "category": "used",
+                    "badge": "Sale",
+                    "badgeClass": "badge-sale",
+                    "image": "images/phone-used-3.png",
+                    "name": "OnePlus 12",
+                    "label": "Pre-Owned",
+                    "ratingHTML": "<i class=\"bi bi-star-fill\"></i><i class=\"bi bi-star-fill\"></i><i class=\"bi bi-star-fill\"></i><i class=\"bi bi-star-fill\"></i><i class=\"bi bi-star\"></i>",
+                    "reviews": 38,
+                    "currentPrice": "Rs. 119,999",
+                    "oldPrice": "Rs. 189,999",
+                    "conditionHTML": "<div class=\"product-condition good\"><i class=\"bi bi-patch-check-fill\"></i> Good Condition</div>",
+                    "delay": "3"
+                },
+                {
+                    "category": "accessory",
+                    "badge": "New",
+                    "badgeClass": "badge-new",
+                    "image": "images/accessory-1.png",
+                    "name": "Wireless Earbuds Pro",
+                    "label": "Accessory",
+                    "ratingHTML": "<i class=\"bi bi-star-fill\"></i><i class=\"bi bi-star-fill\"></i><i class=\"bi bi-star-fill\"></i><i class=\"bi bi-star-fill\"></i><i class=\"bi bi-star-half\"></i>",
+                    "reviews": 210,
+                    "currentPrice": "Rs. 12,999",
+                    "oldPrice": "Rs. 17,999",
+                    "conditionHTML": "",
+                    "delay": "1"
+                },
+                {
+                    "category": "accessory",
+                    "badge": "New",
+                    "badgeClass": "badge-new",
+                    "image": "images/accessory-2.png",
+                    "name": "Premium Armor Phone Case",
+                    "label": "Accessory",
+                    "ratingHTML": "<i class=\"bi bi-star-fill\"></i><i class=\"bi bi-star-fill\"></i><i class=\"bi bi-star-fill\"></i><i class=\"bi bi-star-fill\"></i><i class=\"bi bi-star\"></i>",
+                    "reviews": 156,
+                    "currentPrice": "Rs. 2,499",
+                    "oldPrice": "Rs. 3,999",
+                    "conditionHTML": "",
+                    "delay": "2"
+                },
+                {
+                    "category": "accessory",
+                    "badge": "Sale",
+                    "badgeClass": "badge-sale",
+                    "image": "images/accessory-3.png",
+                    "name": "65W Fast Charger Kit",
+                    "label": "Accessory",
+                    "ratingHTML": "<i class=\"bi bi-star-fill\"></i><i class=\"bi bi-star-fill\"></i><i class=\"bi bi-star-fill\"></i><i class=\"bi bi-star-fill\"></i><i class=\"bi bi-star-fill\"></i>",
+                    "reviews": 320,
+                    "currentPrice": "Rs. 3,999",
+                    "oldPrice": "Rs. 5,999",
+                    "conditionHTML": "",
+                    "delay": "3"
+                }
+            ],
+            "deals": [
+                {
+                    "delayClass": "reveal-left",
+                    "icon": "bi-fire",
+                    "tag": "Flash Sale",
+                    "titleHTML": "Up to 40% Off on<br />Pre-Owned iPhones",
+                    "desc": "Certified quality, warranty included. Limited stock \u2014 grab yours now!",
+                    "isCountdown": true,
+                    "btnLink": "#products",
+                    "btnClass": "btn-primary-gradient",
+                    "btnIcon": "bi-bag-check",
+                    "btnText": "Shop Now",
+                    "featuresHTML": ""
+                },
+                {
+                    "delayClass": "reveal-right",
+                    "icon": "bi-gift",
+                    "tag": "Bundle Offer",
+                    "titleHTML": "Buy Any Phone &<br />Get 50% Off Accessories",
+                    "desc": "Mix & match cases, chargers, earbuds and screen protectors with any phone purchase.",
+                    "isCountdown": false,
+                    "btnLink": "#products",
+                    "btnClass": "btn-accent",
+                    "btnIcon": "bi-stars",
+                    "btnText": "Explore Bundle",
+                    "featuresHTML": "<div class=\"d-flex gap-3 flex-wrap mb-4\"><div class=\"d-flex align-items-center gap-2\" style=\"color: var(--secondary-light)\"><i class=\"bi bi-check-circle-fill\"></i><span>Phone Cases</span></div><div class=\"d-flex align-items-center gap-2\" style=\"color: var(--secondary-light)\"><i class=\"bi bi-check-circle-fill\"></i><span>Chargers</span></div><div class=\"d-flex align-items-center gap-2\" style=\"color: var(--secondary-light)\"><i class=\"bi bi-check-circle-fill\"></i><span>Earbuds</span></div><div class=\"d-flex align-items-center gap-2\" style=\"color: var(--secondary-light)\"><i class=\"bi bi-check-circle-fill\"></i><span>Screen Guards</span></div></div>"
+                }
+            ]
+        };
+
+        // Render Products
+        var productsHtml = "";
+        $.each(data.products, function(i, p) {
+            productsHtml += `
+                <div class="col-lg-4 col-md-6 product-item reveal reveal-delay-${p.delay}" data-category="${p.category}">
+                    <div class="product-card">
+                        <span class="product-badge ${p.badgeClass}">${p.badge}</span>
+                        <div class="product-wishlist"><i class="bi bi-heart"></i></div>
+                        <div class="product-image">
+                            <img src="${p.image}" alt="${p.name}">
+                            <div class="product-actions">
+                                <button class="action-btn quick-view-btn" title="Quick View"><i class="bi bi-eye"></i></button>
+                                <a href="#" target="_blank" class="action-btn whatsapp-action" title="Order on WhatsApp"><i class="bi bi-whatsapp"></i></a>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">${p.label}</div>
+                            <h5>${p.name}</h5>
+                            <div class="product-rating">
+                                ${p.ratingHTML}
+                                <span>(${p.reviews} reviews)</span>
+                            </div>
+                            ${p.conditionHTML}
+                            <div class="price-wrapper">
+                                <span class="current-price">${p.currentPrice}</span>
+                                <span class="old-price">${p.oldPrice}</span>
+                            </div>
+                            <a href="#" target="_blank" class="whatsapp-btn"><i class="bi bi-whatsapp"></i> Order on WhatsApp</a>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+        $("#products-container").html(productsHtml);
+
+        // Render Deals
+        var dealsHtml = "";
+        $.each(data.deals, function(i, d) {
+            var countdownHtml = d.isCountdown ? `
+                <div class="deal-countdown">
+                    <div class="countdown-item"><span class="count-num" id="countdown-days">00</span><span class="count-label">Days</span></div>
+                    <div class="countdown-item"><span class="count-num" id="countdown-hours">00</span><span class="count-label">Hours</span></div>
+                    <div class="countdown-item"><span class="count-num" id="countdown-minutes">00</span><span class="count-label">Mins</span></div>
+                    <div class="countdown-item"><span class="count-num" id="countdown-seconds">00</span><span class="count-label">Secs</span></div>
+                </div>
+            ` : "";
+
+            dealsHtml += `
+                <div class="col-lg-6 reveal ${d.delayClass}">
+                    <div class="deal-card">
+                        <div class="deal-tag"><i class="bi ${d.icon} me-1"></i> ${d.tag}</div>
+                        <h3>${d.titleHTML}</h3>
+                        <p>${d.desc}</p>
+                        ${countdownHtml}
+                        ${d.featuresHTML}
+                        <a href="${d.btnLink}" class="btn ${d.btnClass}">
+                            <i class="bi ${d.btnIcon} me-2"></i> ${d.btnText}
+                        </a>
+                    </div>
+                </div>
+            `;
+        });
+        $("#deals-container").html(dealsHtml);
+
+        // Re-bind setup
+        setupWhatsAppLinks();
+        
+        // Re-observe new elements
+        if (typeof observer !== "undefined") {
+            document.querySelectorAll("#products-container .reveal, #deals-container .reveal").forEach(function (el) {
+                observer.observe(el);
+            });
+        }
+    }
+
+    loadDynamicData();
+
+    // ---- Theme Toggle ---- //
+    var themeToggle = $("#themeToggle");
+    var themeIcon = $("#themeIcon");
+    var currentTheme = localStorage.getItem("theme") || "light";
+
+    if (currentTheme === "light") {
+        $("html").attr("data-theme", "light");
+        themeIcon.removeClass("bi-sun-fill").addClass("bi-moon-stars-fill");
+    } else {
+        $("html").attr("data-theme", "dark");
+    }
+
+    themeToggle.on("click", function () {
+        var isLight = $("html").attr("data-theme") === "light";
+        if (isLight) {
+            $("html").attr("data-theme", "dark");
+            localStorage.setItem("theme", "dark");
+            themeIcon.removeClass("bi-moon-stars-fill").addClass("bi-sun-fill");
+        } else {
+            $("html").attr("data-theme", "light");
+            localStorage.setItem("theme", "light");
+            themeIcon.removeClass("bi-sun-fill").addClass("bi-moon-stars-fill");
+        }
+    });
 });
 
 /* Reveal Animation CSS Classes (added via JS) */

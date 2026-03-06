@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -80,7 +80,11 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#contact">Contact</a>
                         </li>
-                        
+                        <li class="nav-item d-flex align-items-center ms-lg-3 mt-3 mt-lg-0">
+                            <button id="themeToggle" class="btn btn-outline-glow btn-sm" style="padding: 6px 12px; border-radius: 50%;" aria-label="Toggle Theme">
+                                <i class="bi bi-sun-fill" id="themeIcon"></i>
+                            </button>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -262,441 +266,8 @@
                 </div>
 
                 <!-- Product Grid -->
-                <div class="row g-4">
-                    <!-- Product 1 - New Phone -->
-                    <div
-                        class="col-lg-4 col-md-6 product-item reveal reveal-delay-1"
-                        data-category="new"
-                    >
-                        <div class="product-card">
-                            <span class="product-badge badge-new">New</span>
-                            <div class="product-wishlist">
-                                <i class="bi bi-heart"></i>
-                            </div>
-                            <div class="product-image">
-                                <img
-                                    src="images/phone-new-1.png"
-                                    alt="iPhone 16 Pro Max"
-                                />
-                                <div class="product-actions">
-                                    <button
-                                        class="action-btn quick-view-btn"
-                                        title="Quick View"
-                                    >
-                                        <i class="bi bi-eye"></i>
-                                    </button>
-                                    <a href="#" target="_blank" class="action-btn whatsapp-action" title="Order on WhatsApp"><i class="bi bi-whatsapp"></i></a>
-                                </div>
-                            </div>
-                            <div class="product-info">
-                                <div class="product-category">Smartphone</div>
-                                <h5>iPhone 16 Pro Max</h5>
-                                <div class="product-rating">
-                                    <i class="bi bi-star-fill"></i
-                                    ><i class="bi bi-star-fill"></i
-                                    ><i class="bi bi-star-fill"></i
-                                    ><i class="bi bi-star-fill"></i
-                                    ><i class="bi bi-star-half"></i>
-                                    <span>(128 reviews)</span>
-                                </div>
-                                <div class="price-wrapper">
-                                    <span class="current-price"
-                                        >Rs. 549,999</span
-                                    >
-                                    <span class="old-price">Rs. 599,999</span>
-                                </div>
-                                <a href="#" target="_blank" class="whatsapp-btn"><i class="bi bi-whatsapp"></i> Order on WhatsApp</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Product 2 - New Phone -->
-                    <div
-                        class="col-lg-4 col-md-6 product-item reveal reveal-delay-2"
-                        data-category="new"
-                    >
-                        <div class="product-card">
-                            <span class="product-badge badge-new">New</span>
-                            <div class="product-wishlist">
-                                <i class="bi bi-heart"></i>
-                            </div>
-                            <div class="product-image">
-                                <img
-                                    src="images/phone-new-2.png"
-                                    alt="Samsung Galaxy S25 Ultra"
-                                />
-                                <div class="product-actions">
-                                    <button
-                                        class="action-btn quick-view-btn"
-                                        title="Quick View"
-                                    >
-                                        <i class="bi bi-eye"></i>
-                                    </button>
-                                    <a href="#" target="_blank" class="action-btn whatsapp-action" title="Order on WhatsApp"><i class="bi bi-whatsapp"></i></a>
-                                </div>
-                            </div>
-                            <div class="product-info">
-                                <div class="product-category">Smartphone</div>
-                                <h5>Samsung Galaxy S25 Ultra</h5>
-                                <div class="product-rating">
-                                    <i class="bi bi-star-fill"></i
-                                    ><i class="bi bi-star-fill"></i
-                                    ><i class="bi bi-star-fill"></i
-                                    ><i class="bi bi-star-fill"></i
-                                    ><i class="bi bi-star-fill"></i>
-                                    <span>(96 reviews)</span>
-                                </div>
-                                <div class="price-wrapper">
-                                    <span class="current-price"
-                                        >Rs. 479,999</span
-                                    >
-                                    <span class="old-price">Rs. 529,999</span>
-                                </div>
-                                <a href="#" target="_blank" class="whatsapp-btn"><i class="bi bi-whatsapp"></i> Order on WhatsApp</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Product 3 - New Phone -->
-                    <div
-                        class="col-lg-4 col-md-6 product-item reveal reveal-delay-3"
-                        data-category="new"
-                    >
-                        <div class="product-card">
-                            <span class="product-badge badge-new">New</span>
-                            <div class="product-wishlist">
-                                <i class="bi bi-heart"></i>
-                            </div>
-                            <div class="product-image">
-                                <img
-                                    src="images/phone-new-3.png"
-                                    alt="Google Pixel 9 Pro"
-                                />
-                                <div class="product-actions">
-                                    <button
-                                        class="action-btn quick-view-btn"
-                                        title="Quick View"
-                                    >
-                                        <i class="bi bi-eye"></i>
-                                    </button>
-                                    <a href="#" target="_blank" class="action-btn whatsapp-action" title="Order on WhatsApp"><i class="bi bi-whatsapp"></i></a>
-                                </div>
-                            </div>
-                            <div class="product-info">
-                                <div class="product-category">Smartphone</div>
-                                <h5>Google Pixel 9 Pro</h5>
-                                <div class="product-rating">
-                                    <i class="bi bi-star-fill"></i
-                                    ><i class="bi bi-star-fill"></i
-                                    ><i class="bi bi-star-fill"></i
-                                    ><i class="bi bi-star-fill"></i
-                                    ><i class="bi bi-star"></i>
-                                    <span>(72 reviews)</span>
-                                </div>
-                                <div class="price-wrapper">
-                                    <span class="current-price"
-                                        >Rs. 329,999</span
-                                    >
-                                    <span class="old-price">Rs. 359,999</span>
-                                </div>
-                                <a href="#" target="_blank" class="whatsapp-btn"><i class="bi bi-whatsapp"></i> Order on WhatsApp</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Product 4 - Used Phone -->
-                    <div
-                        class="col-lg-4 col-md-6 product-item reveal reveal-delay-1"
-                        data-category="used"
-                    >
-                        <div class="product-card">
-                            <span class="product-badge badge-used"
-                                >Pre-Owned</span
-                            >
-                            <div class="product-wishlist">
-                                <i class="bi bi-heart"></i>
-                            </div>
-                            <div class="product-image">
-                                <img
-                                    src="images/phone-used-1.png"
-                                    alt="iPhone 14 Pro - Used"
-                                />
-                                <div class="product-actions">
-                                    <button
-                                        class="action-btn quick-view-btn"
-                                        title="Quick View"
-                                    >
-                                        <i class="bi bi-eye"></i>
-                                    </button>
-                                    <a href="#" target="_blank" class="action-btn whatsapp-action" title="Order on WhatsApp"><i class="bi bi-whatsapp"></i></a>
-                                </div>
-                            </div>
-                            <div class="product-info">
-                                <div class="product-category">Pre-Owned</div>
-                                <h5>iPhone 14 Pro</h5>
-                                <div class="product-rating">
-                                    <i class="bi bi-star-fill"></i
-                                    ><i class="bi bi-star-fill"></i
-                                    ><i class="bi bi-star-fill"></i
-                                    ><i class="bi bi-star-fill"></i
-                                    ><i class="bi bi-star"></i>
-                                    <span>(45 reviews)</span>
-                                </div>
-                                <div class="product-condition excellent">
-                                    <i class="bi bi-patch-check-fill"></i>
-                                    Excellent Condition
-                                </div>
-                                <div class="price-wrapper">
-                                    <span class="current-price"
-                                        >Rs. 249,999</span
-                                    >
-                                    <span class="old-price">Rs. 349,999</span>
-                                </div>
-                                <a href="#" target="_blank" class="whatsapp-btn"><i class="bi bi-whatsapp"></i> Order on WhatsApp</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Product 5 - Used Phone -->
-                    <div
-                        class="col-lg-4 col-md-6 product-item reveal reveal-delay-2"
-                        data-category="used"
-                    >
-                        <div class="product-card">
-                            <span class="product-badge badge-used"
-                                >Pre-Owned</span
-                            >
-                            <div class="product-wishlist">
-                                <i class="bi bi-heart"></i>
-                            </div>
-                            <div class="product-image">
-                                <img
-                                    src="images/phone-used-2.png"
-                                    alt="Samsung Galaxy S23 - Used"
-                                />
-                                <div class="product-actions">
-                                    <button
-                                        class="action-btn quick-view-btn"
-                                        title="Quick View"
-                                    >
-                                        <i class="bi bi-eye"></i>
-                                    </button>
-                                    <a href="#" target="_blank" class="action-btn whatsapp-action" title="Order on WhatsApp"><i class="bi bi-whatsapp"></i></a>
-                                </div>
-                            </div>
-                            <div class="product-info">
-                                <div class="product-category">Pre-Owned</div>
-                                <h5>Samsung Galaxy S23</h5>
-                                <div class="product-rating">
-                                    <i class="bi bi-star-fill"></i
-                                    ><i class="bi bi-star-fill"></i
-                                    ><i class="bi bi-star-fill"></i
-                                    ><i class="bi bi-star-fill"></i
-                                    ><i class="bi bi-star-half"></i>
-                                    <span>(63 reviews)</span>
-                                </div>
-                                <div class="product-condition excellent">
-                                    <i class="bi bi-patch-check-fill"></i>
-                                    Excellent Condition
-                                </div>
-                                <div class="price-wrapper">
-                                    <span class="current-price"
-                                        >Rs. 159,999</span
-                                    >
-                                    <span class="old-price">Rs. 229,999</span>
-                                </div>
-                                <a href="#" target="_blank" class="whatsapp-btn"><i class="bi bi-whatsapp"></i> Order on WhatsApp</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Product 6 - Used Phone -->
-                    <div
-                        class="col-lg-4 col-md-6 product-item reveal reveal-delay-3"
-                        data-category="used"
-                    >
-                        <div class="product-card">
-                            <span class="product-badge badge-sale">Sale</span>
-                            <div class="product-wishlist">
-                                <i class="bi bi-heart"></i>
-                            </div>
-                            <div class="product-image">
-                                <img
-                                    src="images/phone-used-3.png"
-                                    alt="OnePlus 12 - Used"
-                                />
-                                <div class="product-actions">
-                                    <button
-                                        class="action-btn quick-view-btn"
-                                        title="Quick View"
-                                    >
-                                        <i class="bi bi-eye"></i>
-                                    </button>
-                                    <a href="#" target="_blank" class="action-btn whatsapp-action" title="Order on WhatsApp"><i class="bi bi-whatsapp"></i></a>
-                                </div>
-                            </div>
-                            <div class="product-info">
-                                <div class="product-category">Pre-Owned</div>
-                                <h5>OnePlus 12</h5>
-                                <div class="product-rating">
-                                    <i class="bi bi-star-fill"></i
-                                    ><i class="bi bi-star-fill"></i
-                                    ><i class="bi bi-star-fill"></i
-                                    ><i class="bi bi-star-fill"></i
-                                    ><i class="bi bi-star"></i>
-                                    <span>(38 reviews)</span>
-                                </div>
-                                <div class="product-condition good">
-                                    <i class="bi bi-patch-check-fill"></i> Good
-                                    Condition
-                                </div>
-                                <div class="price-wrapper">
-                                    <span class="current-price"
-                                        >Rs. 119,999</span
-                                    >
-                                    <span class="old-price">Rs. 189,999</span>
-                                </div>
-                                <a href="#" target="_blank" class="whatsapp-btn"><i class="bi bi-whatsapp"></i> Order on WhatsApp</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Product 7 - Accessory -->
-                    <div
-                        class="col-lg-4 col-md-6 product-item reveal reveal-delay-1"
-                        data-category="accessory"
-                    >
-                        <div class="product-card">
-                            <span class="product-badge badge-new">New</span>
-                            <div class="product-wishlist">
-                                <i class="bi bi-heart"></i>
-                            </div>
-                            <div class="product-image">
-                                <img
-                                    src="images/accessory-1.png"
-                                    alt="Wireless Earbuds Pro"
-                                />
-                                <div class="product-actions">
-                                    <button
-                                        class="action-btn quick-view-btn"
-                                        title="Quick View"
-                                    >
-                                        <i class="bi bi-eye"></i>
-                                    </button>
-                                    <a href="#" target="_blank" class="action-btn whatsapp-action" title="Order on WhatsApp"><i class="bi bi-whatsapp"></i></a>
-                                </div>
-                            </div>
-                            <div class="product-info">
-                                <div class="product-category">Accessory</div>
-                                <h5>Wireless Earbuds Pro</h5>
-                                <div class="product-rating">
-                                    <i class="bi bi-star-fill"></i
-                                    ><i class="bi bi-star-fill"></i
-                                    ><i class="bi bi-star-fill"></i
-                                    ><i class="bi bi-star-fill"></i
-                                    ><i class="bi bi-star-half"></i>
-                                    <span>(210 reviews)</span>
-                                </div>
-                                <div class="price-wrapper">
-                                    <span class="current-price"
-                                        >Rs. 12,999</span
-                                    >
-                                    <span class="old-price">Rs. 17,999</span>
-                                </div>
-                                <a href="#" target="_blank" class="whatsapp-btn"><i class="bi bi-whatsapp"></i> Order on WhatsApp</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Product 8 - Accessory -->
-                    <div
-                        class="col-lg-4 col-md-6 product-item reveal reveal-delay-2"
-                        data-category="accessory"
-                    >
-                        <div class="product-card">
-                            <span class="product-badge badge-new">New</span>
-                            <div class="product-wishlist">
-                                <i class="bi bi-heart"></i>
-                            </div>
-                            <div class="product-image">
-                                <img
-                                    src="images/accessory-2.png"
-                                    alt="Premium Phone Case"
-                                />
-                                <div class="product-actions">
-                                    <button
-                                        class="action-btn quick-view-btn"
-                                        title="Quick View"
-                                    >
-                                        <i class="bi bi-eye"></i>
-                                    </button>
-                                    <a href="#" target="_blank" class="action-btn whatsapp-action" title="Order on WhatsApp"><i class="bi bi-whatsapp"></i></a>
-                                </div>
-                            </div>
-                            <div class="product-info">
-                                <div class="product-category">Accessory</div>
-                                <h5>Premium Armor Phone Case</h5>
-                                <div class="product-rating">
-                                    <i class="bi bi-star-fill"></i
-                                    ><i class="bi bi-star-fill"></i
-                                    ><i class="bi bi-star-fill"></i
-                                    ><i class="bi bi-star-fill"></i
-                                    ><i class="bi bi-star"></i>
-                                    <span>(156 reviews)</span>
-                                </div>
-                                <div class="price-wrapper">
-                                    <span class="current-price">Rs. 2,499</span>
-                                    <span class="old-price">Rs. 3,999</span>
-                                </div>
-                                <a href="#" target="_blank" class="whatsapp-btn"><i class="bi bi-whatsapp"></i> Order on WhatsApp</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Product 9 - Accessory -->
-                    <div
-                        class="col-lg-4 col-md-6 product-item reveal reveal-delay-3"
-                        data-category="accessory"
-                    >
-                        <div class="product-card">
-                            <span class="product-badge badge-sale">Sale</span>
-                            <div class="product-wishlist">
-                                <i class="bi bi-heart"></i>
-                            </div>
-                            <div class="product-image">
-                                <img
-                                    src="images/accessory-3.png"
-                                    alt="Fast Charger Kit"
-                                />
-                                <div class="product-actions">
-                                    <button
-                                        class="action-btn quick-view-btn"
-                                        title="Quick View"
-                                    >
-                                        <i class="bi bi-eye"></i>
-                                    </button>
-                                    <a href="#" target="_blank" class="action-btn whatsapp-action" title="Order on WhatsApp"><i class="bi bi-whatsapp"></i></a>
-                                </div>
-                            </div>
-                            <div class="product-info">
-                                <div class="product-category">Accessory</div>
-                                <h5>65W Fast Charger Kit</h5>
-                                <div class="product-rating">
-                                    <i class="bi bi-star-fill"></i
-                                    ><i class="bi bi-star-fill"></i
-                                    ><i class="bi bi-star-fill"></i
-                                    ><i class="bi bi-star-fill"></i
-                                    ><i class="bi bi-star-fill"></i>
-                                    <span>(320 reviews)</span>
-                                </div>
-                                <div class="price-wrapper">
-                                    <span class="current-price">Rs. 3,999</span>
-                                    <span class="old-price">Rs. 5,999</span>
-                                </div>
-                                <a href="#" target="_blank" class="whatsapp-btn"><i class="bi bi-whatsapp"></i> Order on WhatsApp</a>
-                            </div>
-                        </div>
-                    </div>
+                <div class="row g-4" id="products-container">
+                    <!-- Products will be loaded dynamically from data.json -->
                 </div>
             </div>
         </section>
@@ -715,102 +286,8 @@
                     </p>
                 </div>
 
-                <div class="row g-4">
-                    <div class="col-lg-6 reveal reveal-left">
-                        <div class="deal-card">
-                            <div class="deal-tag">
-                                <i class="bi bi-fire me-1"></i> Flash Sale
-                            </div>
-                            <h3>Up to 40% Off on<br />Pre-Owned iPhones</h3>
-                            <p>
-                                Certified quality, warranty included. Limited
-                                stock — grab yours now!
-                            </p>
-                            <div class="deal-countdown">
-                                <div class="countdown-item">
-                                    <span class="count-num" id="countdown-days"
-                                        >00</span
-                                    >
-                                    <span class="count-label">Days</span>
-                                </div>
-                                <div class="countdown-item">
-                                    <span class="count-num" id="countdown-hours"
-                                        >00</span
-                                    >
-                                    <span class="count-label">Hours</span>
-                                </div>
-                                <div class="countdown-item">
-                                    <span
-                                        class="count-num"
-                                        id="countdown-minutes"
-                                        >00</span
-                                    >
-                                    <span class="count-label">Mins</span>
-                                </div>
-                                <div class="countdown-item">
-                                    <span
-                                        class="count-num"
-                                        id="countdown-seconds"
-                                        >00</span
-                                    >
-                                    <span class="count-label">Secs</span>
-                                </div>
-                            </div>
-                            <a
-                                href="#products"
-                                class="btn btn-primary-gradient"
-                            >
-                                <i class="bi bi-bag-check me-2"></i> Shop Now
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 reveal reveal-right">
-                        <div class="deal-card">
-                            <div class="deal-tag">
-                                <i class="bi bi-gift me-1"></i> Bundle Offer
-                            </div>
-                            <h3>
-                                Buy Any Phone &<br />Get 50% Off Accessories
-                            </h3>
-                            <p>
-                                Mix & match cases, chargers, earbuds and screen
-                                protectors with any phone purchase.
-                            </p>
-                            <div class="d-flex gap-3 flex-wrap mb-4">
-                                <div
-                                    class="d-flex align-items-center gap-2"
-                                    style="color: var(--secondary-light)"
-                                >
-                                    <i class="bi bi-check-circle-fill"></i>
-                                    <span>Phone Cases</span>
-                                </div>
-                                <div
-                                    class="d-flex align-items-center gap-2"
-                                    style="color: var(--secondary-light)"
-                                >
-                                    <i class="bi bi-check-circle-fill"></i>
-                                    <span>Chargers</span>
-                                </div>
-                                <div
-                                    class="d-flex align-items-center gap-2"
-                                    style="color: var(--secondary-light)"
-                                >
-                                    <i class="bi bi-check-circle-fill"></i>
-                                    <span>Earbuds</span>
-                                </div>
-                                <div
-                                    class="d-flex align-items-center gap-2"
-                                    style="color: var(--secondary-light)"
-                                >
-                                    <i class="bi bi-check-circle-fill"></i>
-                                    <span>Screen Guards</span>
-                                </div>
-                            </div>
-                            <a href="#products" class="btn btn-accent">
-                                <i class="bi bi-stars me-2"></i> Explore Bundle
-                            </a>
-                        </div>
-                    </div>
+                <div class="row g-4" id="deals-container">
+                    <!-- Deals will be loaded dynamically from data.json -->
                 </div>
             </div>
         </section>
@@ -1220,12 +697,19 @@
                             <h5 class="mb-4" style="font-weight: 700">
                                 Send us a Message
                             </h5>
-                            <form id="contactForm" class="contact-form">
+                            <form id="codefreeformForm" action="https://codefreeform.com/api/contact-api/" method="POST" class="contact-form">
+                                <!-- Alert -->
+                                <div class="form-alert" style="display: none; padding: 12px 16px; margin-bottom: 20px; border-radius: 8px; font-weight: 500; font-size: 0.95rem;"></div>
+
+                                <!-- Access Key -->
+                                <input type="hidden" name="access_key" value="CB4688" />
+
                                 <div class="row g-3">
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <input
                                                 type="text"
+                                                name="name"
                                                 class="form-control"
                                                 id="contactName"
                                                 placeholder="Your Name"
@@ -1240,6 +724,7 @@
                                         <div class="form-floating">
                                             <input
                                                 type="email"
+                                                name="email"
                                                 class="form-control"
                                                 id="contactEmail"
                                                 placeholder="Email Address"
@@ -1254,6 +739,7 @@
                                         <div class="form-floating">
                                             <input
                                                 type="tel"
+                                                name="phone"
                                                 class="form-control"
                                                 id="contactPhone"
                                                 placeholder="Phone Number"
@@ -1266,21 +752,18 @@
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <select
+                                                name="subject"
                                                 class="form-select"
                                                 id="contactSubject"
                                             >
-                                                <option selected disabled>
+                                                <option selected disabled value="">
                                                     Select Subject
                                                 </option>
-                                                <option>Product Inquiry</option>
-                                                <option>Price Quote</option>
-                                                <option>
-                                                    Trade-In Request
-                                                </option>
-                                                <option>Warranty Claim</option>
-                                                <option>
-                                                    General Question
-                                                </option>
+                                                <option value="Product Inquiry">Product Inquiry</option>
+                                                <option value="Price Quote">Price Quote</option>
+                                                <option value="Trade-In Request">Trade-In Request</option>
+                                                <option value="Warranty Claim">Warranty Claim</option>
+                                                <option value="General Question">General Question</option>
                                             </select>
                                             <label for="contactSubject"
                                                 >Subject</label
@@ -1290,6 +773,7 @@
                                     <div class="col-12">
                                         <div class="form-floating">
                                             <textarea
+                                                name="message"
                                                 class="form-control"
                                                 id="contactMessage"
                                                 placeholder="Your Message"
@@ -1541,7 +1025,7 @@
         <!-- ===================== FLOATING ELEMENTS ===================== -->
         <!-- WhatsApp Button -->
         <a
-            href="https://wa.me/923001234567"
+            href="https://wa.me/923006635231"
             target="_blank"
             class="whatsapp-float"
             title="Chat on WhatsApp"
